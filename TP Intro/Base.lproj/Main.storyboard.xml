@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="TP_Intro" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Application Swift01" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Il-LD-nnP">
+                                <rect key="frame" x="114" y="28" width="146.5" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Tapez votre nom" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rCQ-Qq-1x0">
+                                <rect key="frame" x="97" y="69" width="180" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="180" id="hiO-Qj-zvn"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="5D6-JQ-SAJ" id="caz-7L-C6d"/>
+                                </connections>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XYo-hy-bDo">
+                                <rect key="frame" x="164" y="318" width="46" height="30"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="changeTitle:" destination="BYZ-38-t0r" eventType="touchUpInside" id="plf-yp-PG9"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="XYo-hy-bDo" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="8AL-rR-gWp"/>
+                            <constraint firstItem="rCQ-Qq-1x0" firstAttribute="top" secondItem="3Il-LD-nnP" secondAttribute="bottom" constant="20" id="J3X-R7-6q4"/>
+                            <constraint firstItem="XYo-hy-bDo" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="N1n-xx-aig"/>
+                            <constraint firstItem="3Il-LD-nnP" firstAttribute="centerX" secondItem="rCQ-Qq-1x0" secondAttribute="centerX" id="UBc-wl-N4S"/>
+                            <constraint firstItem="3Il-LD-nnP" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" symbolic="YES" id="aqi-iA-e4R"/>
+                            <constraint firstItem="3Il-LD-nnP" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="gcZ-aS-jnM"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="button" destination="XYo-hy-bDo" id="1f0-Ae-yqF"/>
+                        <outlet property="nameTextField" destination="rCQ-Qq-1x0" id="x10-ub-skH"/>
+                        <outlet property="titleLabel" destination="3Il-LD-nnP" id="pUu-Q6-bZB"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <customObject id="5D6-JQ-SAJ" userLabel="My Text Field Field Delegate" customClass="MyTextFieldDelegate" customModule="TP_Intro" customModuleProvider="target">
+                    <connections>
+                        <outlet property="btn" destination="XYo-hy-bDo" id="AOc-8D-Khu"/>
+                        <outlet property="nameTextField" destination="rCQ-Qq-1x0" id="WCw-Cl-I2b"/>
+                        <outlet property="titleLabel" destination="3Il-LD-nnP" id="X1l-CB-vKc"/>
+                    </connections>
+                </customObject>
+            </objects>
+            <point key="canvasLocation" x="-284" y="13"/>
+        </scene>
+    </scenes>
+</document>
