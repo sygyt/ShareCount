@@ -47,9 +47,18 @@ class ViewModelPersonSet: NSObject, UITableViewDelegate {
     }
     
     func getPersonFullName(index : Int) -> String{
-        return "ts"
+        return self.personTab[index].fullName
         //return self.personSet.personTab[index].fullName
     }
+    
+    func countNbPerson() -> Int {
+        return self.personTab.count
+    }
+    
+    func get(index :Int) -> Person{
+        return self.personTab[index]
+    }
+    
         
     
 }

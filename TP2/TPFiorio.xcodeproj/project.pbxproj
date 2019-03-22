@@ -23,6 +23,7 @@
 		17D69240223BB171001DF1E3 /* PersonSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17D6923F223BB171001DF1E3 /* PersonSet.swift */; };
 		9F031B9B223FA46A00B04931 /* PersonSetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F031B9A223FA46A00B04931 /* PersonSetTests.swift */; };
 		9F031B9D223FA9D400B04931 /* PersonSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17D6923F223BB171001DF1E3 /* PersonSet.swift */; };
+		9FA81EFB2244EF1A006E47B7 /* PersonDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FA81EFA2244EF1A006E47B7 /* PersonDetailsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +64,7 @@
 		17D6923A223BAA20001DF1E3 /* PersonTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonTests.swift; sourceTree = "<group>"; };
 		17D6923F223BB171001DF1E3 /* PersonSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonSet.swift; sourceTree = "<group>"; };
 		9F031B9A223FA46A00B04931 /* PersonSetTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonSetTests.swift; sourceTree = "<group>"; };
+		9FA81EFA2244EF1A006E47B7 /* PersonDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonDetailsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +97,7 @@
 			children = (
 				177E140C224144C800C347A0 /* TableViewController.swift */,
 				17D69208223B9FFD001DF1E3 /* ViewController.swift */,
+				9FA81EFA2244EF1A006E47B7 /* PersonDetailsViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -303,6 +306,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9FA81EFB2244EF1A006E47B7 /* PersonDetailsViewController.swift in Sources */,
 				177E1416224152A000C347A0 /* ViewModelPersonSet.swift in Sources */,
 				17D69240223BB171001DF1E3 /* PersonSet.swift in Sources */,
 				177E140D224144C800C347A0 /* TableViewController.swift in Sources */,

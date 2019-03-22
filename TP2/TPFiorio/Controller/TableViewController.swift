@@ -7,12 +7,13 @@
 //
 import Foundation
 import UIKit
+import CoreData
 
 class TableViewController: NSObject, UITableViewDelegate, UITableViewDataSource {
     
     var PersonSetData : ViewModelPersonSet
-    
     override init() {
+
         self.PersonSetData = ViewModelPersonSet.init()
         super.init()
     }
@@ -20,7 +21,7 @@ class TableViewController: NSObject, UITableViewDelegate, UITableViewDataSource 
     // MARK: - Table view data source
    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return PersonSetData.countNbPerson()
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
