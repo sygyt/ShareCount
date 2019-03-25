@@ -27,25 +27,45 @@ class MembersFetchResultController: NSObject, NSFetchedResultsControllerDelegate
         }
     }
     
+    //----------------------------------------------------------------
+    // MARK: - FetchResultController
     
     lazy var membersFetched : NSFetchedResultsController<Members> = {
         // prepare a request
         let request : NSFetchRequest<Members> = Members.fetchRequest(); request.sortDescriptors = [NSSortDescriptor(key:#keyPath(Members.lastName),ascending:true),NSSortDescriptor(key:#keyPath(Members.firstName) ,ascending:true)] //change to arrival date
-        do{
-            try self.members = CoreDataManager.context.fetch(request)
-        }
-        catch let error as NSError{
-            self.alert(error: error)
-        }
         let fetchResultController = NSFetchedResultsController(fetchRequest: request, managedObjectContext: CoreDataManager.context, sectionNameKeyPath: nil, cacheName: nil) //force unwrapp need to change
         fetchResultController.delegate = self
-        return fetchResultController }()
+        return fetchResultController
+        
+    }()
     
+    // MARK: - NSFetchResultController delegate protocol
     
+    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>){
+        self.membersTableView.beginUpdates()
+    }
     
+    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>){
+        self.membersTableView.endUpdates()
+        CoreDataManager.save()
+    }
     
-    
-    
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?){
+        switch type {
+        case .insert:
+            if let newIndexPath = newIndexPath{
+                self.membersTableView.insertRows(at: [newIndexPath], with: .automatic) }
+        case .delete:
+            if let indexPath = indexPath{
+                self.membersTableView.deleteRows(at: [indexPath], with: .automatic) }
+        case .update:
+            if let indexPath = indexPath{
+                self.membersTableView.reloadRows(at: [indexPath], with: .automatic) }
+        default:
+            break
+        }
+        
+    }
     
     /// Show an alert with two messages
     ///
@@ -65,4 +85,5 @@ class MembersFetchResultController: NSObject, NSFetchedResultsControllerDelegate
     func alert(error: NSError){
         self.alert(withTitle: "\(error)", andMessage:"\(error.userInfo)")
     }
+
 }

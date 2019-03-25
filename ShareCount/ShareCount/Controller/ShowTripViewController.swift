@@ -14,18 +14,15 @@ class ShowTripViewController: UIViewController, UITableViewDelegate, UITableView
     
     
     @IBOutlet weak var membersTableView: UITableView!
-    @IBOutlet weak var nameTripLabel: UILabel!
     var fetchResultController : MembersFetchResultController!
     
     var trip : Trips? = nil
-    var members : [Members] = []
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         //affect setected trip to label
         if let atrip = self.trip{
-            self.nameTripLabel.text = atrip.name
+            self.parent?.title = atrip.name
         }
         
 //        //load members from CoreData
@@ -39,12 +36,9 @@ class ShowTripViewController: UIViewController, UITableViewDelegate, UITableView
 //        }
         
         //controlerFetchTest
-        self.fetchResultController = MembersFetchResultController(tableView : self.membersTableView)
+        self.fetchResultController = MembersFetchResultController(tableView: self.membersTableView)
         // change to a direct call of fetchresultcontroler
-        //add function to acces data on fetchresultcontroler
-        self.members = self.fetchResultController.members
-        
-        self.membersTableView.reloadData()
+        //add function to acces data on fetchresultcontrole
         self.membersTableView.dataSource = self
         self.membersTableView.delegate = self
     }
@@ -60,6 +54,25 @@ class ShowTripViewController: UIViewController, UITableViewDelegate, UITableView
     }
     */
     
+    //MARK: - TableView delegate
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let delete = deleteAction(at: indexPath)
+        return UISwipeActionsConfiguration(actions: [delete])
+    }
+    
+    func deleteAction(at indexPath: IndexPath) -> UIContextualAction{
+        let member = self.fetchResultController.membersFetched.object(at: indexPath)
+        let action = UIContextualAction(style: .destructive, title: "Delete") { (action, view, completion) in
+            CoreDataManager.context.delete(member)
+            completion(true)
+        }
+        let logotrash = UIImage(named: "Trash")
+        action.image = logotrash
+        action.backgroundColor = UIColor.red
+        return action
+    }
+    
     //MARK: - TableView data source protocol -
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -67,14 +80,19 @@ class ShowTripViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.members.count
+        guard let section = self.fetchResultController.membersFetched.sections?[section] else {
+            fatalError("unexpected section number")
+        }
+        return section.numberOfObjects
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = self.membersTableView.dequeueReusableCell(withIdentifier: "membersCell", for: indexPath) as! MemberTableViewCell
-        if let fn :String = (self.members[indexPath.row].firstName), let ln :String = (self.members[indexPath.row].lastName) {
-            cell.nameMemberLabel.text = fn + " " + ln
-        }
+        let member = self.fetchResultController.membersFetched.object(at: indexPath)
+        cell.nameMemberLabel.text = member.firstName! + " " + member.lastName! //verifier que c'est pas nil
+//        if let fn :String = (self.members[indexPath.row].firstName), let ln :String = (self.members[indexPath.row].lastName) {
+//            cell.nameMemberLabel.text = fn + " " + ln
+//        }
         return cell
     }
     
@@ -101,7 +119,7 @@ class ShowTripViewController: UIViewController, UITableViewDelegate, UITableView
                     let destController = segue.destination as! MemberViewController
                     let memberViewController = segue.destination as! MemberViewController
                     memberViewController.trip = self.trip
-                    destController.member = self.members[indexPath.row]
+                    destController.member = self.fetchResultController.membersFetched.object(at: indexPath)
                     self.membersTableView.deselectRow(at: indexPath, animated: true)
                 }
             }

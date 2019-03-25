@@ -22,6 +22,7 @@ class MemberViewController: UIViewController {
         if let member = self.member{
             self.firstNameLabel.text = member.firstName
             self.lastNameLabel.text = member.lastName
+            //ajouter la date
         }
     }
     
@@ -29,11 +30,16 @@ class MemberViewController: UIViewController {
     ///
     /// - Parameter sender: <#sender description#>
     @IBAction func addMemberButton(_ sender: Any) {
-        let firstName = firstNameLabel.text
-        let lastName = lastNameLabel.text
+        let firstName = firstNameLabel.text ?? ""
+        let lastName = lastNameLabel.text ?? ""
         let arrivalDate = arrivalDatePicker.date
+        guard (firstName != "") && (lastName != "") else { return }
+        let member = Members(context: CoreDataManager.context)
+        member.firstName = firstName
+        member.lastName = lastName
+        member.arrivalDate = arrivalDate
         
-        self.saveNewMember(firstName: firstName, lastName: lastName, arrivalDate: arrivalDate)
+        //self.saveNewMember(firstName: firstName, lastName: lastName, arrivalDate: arrivalDate)
     }
     
     /*
@@ -45,6 +51,8 @@ class MemberViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    @IBAction override func unwind(for unwindSegue: UIStoryboardSegue, towards subsequentVC: UIViewController) {}
     
     
     //MARK: - Trips management -
