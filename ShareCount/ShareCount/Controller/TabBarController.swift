@@ -14,9 +14,6 @@ class TabBarController: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //TODO : changer le fonctionnement !!
-        let showTripVC = self.children[0] as! ShowTripViewController
-        showTripVC.trip = trip
     }
 
 }

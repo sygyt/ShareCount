@@ -104,8 +104,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == self.segueShowTripId{
             if let indexPath = self.tripsTableView.indexPathForSelectedRow{
-                let tabBarController = segue.destination as! TabBarController
-                tabBarController.trip = self.trips[indexPath.row]
+                CurrentTrip.sharedInstance = self.trips[indexPath.row]
                 self.tripsTableView.deselectRow(at: indexPath, animated: true)
             }
         }

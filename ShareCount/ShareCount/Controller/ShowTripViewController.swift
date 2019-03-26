@@ -16,13 +16,12 @@ class ShowTripViewController: UIViewController, UITableViewDelegate, UITableView
     @IBOutlet weak var membersTableView: UITableView!
     var fetchResultController : MembersFetchResultController!
     
-    var trip : Trips? = nil
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         //affect setected trip to label
-        if let atrip = self.trip{
-            self.parent?.title = atrip.name
+        print(CurrentTrip.sharedInstance)
+        if let atrip = CurrentTrip.sharedInstance{
+            self.navigationItem.title = atrip.name
         }
         
 //        //load members from CoreData
@@ -111,21 +110,22 @@ class ShowTripViewController: UIViewController, UITableViewDelegate, UITableView
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == self.segueAddMemberId{
             let memberViewController = segue.destination as! MemberViewController
-            memberViewController.trip = self.trip
+            memberViewController.trip = CurrentTrip.sharedInstance
         }
         else {
             if segue.identifier == self.segueShowMemberId{
                 if let indexPath = self.membersTableView.indexPathForSelectedRow{
                     let destController = segue.destination as! MemberViewController
                     let memberViewController = segue.destination as! MemberViewController
-                    memberViewController.trip = self.trip
+                    memberViewController.trip = CurrentTrip.sharedInstance
                     destController.member = self.fetchResultController.membersFetched.object(at: indexPath)
                     self.membersTableView.deselectRow(at: indexPath, animated: true)
                 }
             }
         }
     }
-
+    
+    @IBAction func unwindToShowTrip(sender: UIStoryboardSegue) {}
     
     
     /// Get the context

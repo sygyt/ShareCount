@@ -33,6 +33,10 @@ class MembersFetchResultController: NSObject, NSFetchedResultsControllerDelegate
     lazy var membersFetched : NSFetchedResultsController<Members> = {
         // prepare a request
         let request : NSFetchRequest<Members> = Members.fetchRequest(); request.sortDescriptors = [NSSortDescriptor(key:#keyPath(Members.lastName),ascending:true),NSSortDescriptor(key:#keyPath(Members.firstName) ,ascending:true)] //change to arrival date
+        /* TEST DE FILTRE
+        if let currentTripName = CurrentTrip.sharedInstance?.name{
+            request.predicate = NSPredicate(format: "trip.name = %d", String(currentTripName))
+        } */
         let fetchResultController = NSFetchedResultsController(fetchRequest: request, managedObjectContext: CoreDataManager.context, sectionNameKeyPath: nil, cacheName: nil) //force unwrapp need to change
         fetchResultController.delegate = self
         return fetchResultController
