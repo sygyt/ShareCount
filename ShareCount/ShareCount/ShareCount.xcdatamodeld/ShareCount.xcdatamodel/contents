@@ -7,11 +7,12 @@
         <relationship name="trip" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Trips" inverseName="members" inverseEntity="Trips" syncable="YES"/>
     </entity>
     <entity name="Trips" representedClassName="Trips" syncable="YES" codeGenerationType="class">
+        <attribute name="image" optional="YES" attributeType="Binary" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="members" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Members" inverseName="trip" inverseEntity="Members" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Trips" positionX="-248.234375" positionY="-328.79296875" width="128" height="73"/>
         <element name="Members" positionX="-492.22265625" positionY="-321.76171875" width="118.3984375" height="103"/>
+        <element name="Trips" positionX="-248.234375" positionY="-328.79296875" width="128" height="90"/>
     </elements>
 </model>

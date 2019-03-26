@@ -30,33 +30,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     
-    /// Add button controller
-    ///
-    /// - Parameter sender: <#sender description#>
-    @IBAction func addButton(_ sender: Any) {
-        let alert = UIAlertController(title: "Nouveau Voyage",
-                                      message: "Ajouter un voyage",
-                                      preferredStyle: .alert)
-        
-        let saveAction = UIAlertAction(title: "Ajouter",
-                                       style: .default)
-        {
-            [unowned self] action in
-            guard let textField = alert.textFields?.first,
-                let nameToSave = textField.text else {
-                    return
-            }
-            self.saveNewTrip(withName: nameToSave)
-            self.tripsTableView.reloadData()
-        }
-        let cancelAction = UIAlertAction(title: "Annuler",
-                                         style: .default)
-        alert.addTextField()
-        alert.addAction(saveAction)
-        alert.addAction(cancelAction)
-        present(alert, animated: true)
-    }
-    
     //MARK: - TableView data source protocol -
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -66,29 +39,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
         let cell = self.tripsTableView.dequeueReusableCell(withIdentifier: "tripCell", for: indexPath) as!TripTableViewCell
         cell.nameTripLabel.text = self.trips[indexPath.row].name
+        if let imgData = self.trips[indexPath.row].image{
+            cell.imageTrip.image = UIImage(data: imgData)
+        }
         return cell
-    }
-    
-    
-    //MARK: - Trips management -
-    /// Saves the trip in the CoreData
-    ///
-    /// - Parameter name: The name of the trip
-    func saveNewTrip(withName name: String) {
-        guard let context = self.getContext(errorMsg: "Could not load data") else {return}
-        // création ogjet trip
-        let trip = Trips(context: context)
-        //modifier le nom
-        trip.name = name
-        do{
-            try context.save()
-            trips.append(trip)
-            
-        }
-        catch let error as NSError{
-            self.alert(error: error)
-            return
-        }
     }
     
     
@@ -109,6 +63,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             }
         }
     }
+    
+    
+    @IBAction func unwindToShowTrip(sender: UIStoryboardSegue) {}
     
     /// Get the context
     ///

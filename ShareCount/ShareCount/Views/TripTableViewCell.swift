@@ -11,6 +11,7 @@ import UIKit
 class TripTableViewCell: UITableViewCell {
 
     @IBOutlet weak var nameTripLabel: UILabel!
+    @IBOutlet weak var imageTrip: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
