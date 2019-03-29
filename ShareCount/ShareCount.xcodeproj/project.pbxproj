@@ -19,6 +19,7 @@
 		170CE8C0224E52F40016B254 /* ExpenseFetchResultController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 170CE8BF224E52F40016B254 /* ExpenseFetchResultController.swift */; };
 		170CE8C2224E56F20016B254 /* ExpenseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 170CE8C1224E56F20016B254 /* ExpenseTableViewCell.swift */; };
 		170CE8C4224E57F00016B254 /* ExpensesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 170CE8C3224E57F00016B254 /* ExpensesViewController.swift */; };
+		170CE8C6224E6EC70016B254 /* ShowMemberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 170CE8C5224E6EC70016B254 /* ShowMemberViewController.swift */; };
 		9F18B824224A322D000C1BBA /* CurrentTrip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F18B823224A322D000C1BBA /* CurrentTrip.swift */; };
 		9F18B826224A7CA4000C1BBA /* AddTripViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F18B825224A7CA4000C1BBA /* AddTripViewController.swift */; };
 		9FA81F0922453C02006E47B7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FA81F0822453C02006E47B7 /* AppDelegate.swift */; };
@@ -61,6 +62,7 @@
 		170CE8BF224E52F40016B254 /* ExpenseFetchResultController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseFetchResultController.swift; sourceTree = "<group>"; };
 		170CE8C1224E56F20016B254 /* ExpenseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseTableViewCell.swift; sourceTree = "<group>"; };
 		170CE8C3224E57F00016B254 /* ExpensesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpensesViewController.swift; sourceTree = "<group>"; };
+		170CE8C5224E6EC70016B254 /* ShowMemberViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowMemberViewController.swift; sourceTree = "<group>"; };
 		9F18B823224A322D000C1BBA /* CurrentTrip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentTrip.swift; sourceTree = "<group>"; };
 		9F18B825224A7CA4000C1BBA /* AddTripViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTripViewController.swift; sourceTree = "<group>"; };
 		9FA81F0522453C02006E47B7 /* ShareCount.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShareCount.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -188,6 +190,7 @@
 				11C9955822469E2E0064AA4B /* ShowTripViewController.swift */,
 				9FA81F0A22453C03006E47B7 /* TripsViewController.swift */,
 				11C99562224793900064AA4B /* MemberViewController.swift */,
+				170CE8C5224E6EC70016B254 /* ShowMemberViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -348,6 +351,7 @@
 				9FA81F0922453C02006E47B7 /* AppDelegate.swift in Sources */,
 				11C995692247E8C20064AA4B /* MembersFetchResultController.swift in Sources */,
 				9F18B824224A322D000C1BBA /* CurrentTrip.swift in Sources */,
+				170CE8C6224E6EC70016B254 /* ShowMemberViewController.swift in Sources */,
 				170CE8BC224E204F0016B254 /* TripsFetchResultController.swift in Sources */,
 				11C9956B2247F74B0064AA4B /* CoreDataManager.swift in Sources */,
 			);

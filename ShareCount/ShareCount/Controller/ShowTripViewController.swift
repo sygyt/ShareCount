@@ -105,9 +105,8 @@ class ShowTripViewController: UIViewController, UITableViewDelegate, UITableView
         else {
             if segue.identifier == self.segueShowMemberId{
                 if let indexPath = self.membersTableView.indexPathForSelectedRow{
-                    let destController = segue.destination as! MemberViewController
-                    let memberViewController = segue.destination as! MemberViewController
-                    memberViewController.trip = CurrentTrip.sharedInstance
+                    let destController = segue.destination as! ShowMemberViewController
+                    let memberViewController = segue.destination as! ShowMemberViewController
                     destController.member = self.fetchResultController.membersFetched.object(at: indexPath)
                     self.membersTableView.deselectRow(at: indexPath, animated: true)
                 }

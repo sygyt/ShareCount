@@ -9,6 +9,7 @@
         <attribute name="arrivalDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="firstName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="lastName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="leavingDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <relationship name="participateMember" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Participate" inverseName="memberParticipate" inverseEntity="Participate" syncable="YES"/>
         <relationship name="trip" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Trips" inverseName="members" inverseEntity="Trips" syncable="YES"/>
     </entity>
@@ -18,13 +19,15 @@
         <relationship name="newRelationship" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Expense" inverseName="newRelationship" inverseEntity="Expense" syncable="YES"/>
     </entity>
     <entity name="Trips" representedClassName="Trips" syncable="YES" codeGenerationType="class">
+        <attribute name="beginDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="endDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="image" optional="YES" attributeType="Binary" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="members" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Members" inverseName="trip" inverseEntity="Members" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Members" positionX="-492.22265625" positionY="-321.76171875" width="118.3984375" height="118"/>
-        <element name="Trips" positionX="-216.40234375" positionY="-300.3828125" width="128" height="90"/>
+        <element name="Members" positionX="-492.22265625" positionY="-321.76171875" width="118.3984375" height="133"/>
+        <element name="Trips" positionX="-216.40234375" positionY="-300.3828125" width="128" height="118"/>
         <element name="Expense" positionX="-498.94921875" positionY="-142.203125" width="128" height="88"/>
         <element name="Participate" positionX="-785.453125" positionY="-220.69921875" width="128" height="88"/>
     </elements>

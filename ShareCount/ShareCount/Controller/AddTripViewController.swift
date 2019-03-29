@@ -9,20 +9,22 @@
 import UIKit
 import CoreData
 
-class AddTripViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate{
+class AddTripViewController: UIViewController, UITextFieldDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate{
 
     
     @IBOutlet weak var nameTripTF: UITextField!
     @IBOutlet weak var changeImgBtn: UIButton!
     @IBOutlet weak var dateTripTF: UITextField!
+    @IBOutlet weak var endDateTextField: UITextField!
     @IBOutlet weak var myImageView: UIImageView!
     let datePicker = UIDatePicker()
     let imagePicker = UIImagePickerController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        showDatePicker()
         imagePicker.delegate = self
+        self.dateTripTF.delegate = self
+        self.endDateTextField.delegate = self
     }
 
     @IBAction func loadImageButton(_ sender: Any) {
@@ -36,7 +38,12 @@ class AddTripViewController: UIViewController, UINavigationControllerDelegate, U
         super.didReceiveMemoryWarning()
     }
     
-    func showDatePicker(){
+    // UI textfield Delegate
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        showDatePicker(label: textField)
+    }
+    
+    func showDatePicker(label: UITextField){
         datePicker.datePickerMode = .date
         
         let toolbar = UIToolbar();
@@ -47,20 +54,34 @@ class AddTripViewController: UIViewController, UINavigationControllerDelegate, U
         
         toolbar.setItems([doneButton,spaceButton,cancelButton], animated: false)
         
-        dateTripTF.inputAccessoryView = toolbar
-        dateTripTF.inputView = datePicker
+        label.inputAccessoryView = toolbar
+        label.inputView = datePicker
         
     }
     
-    @objc func donedatePicker(){
+    @objc func donedatePicker(label: UITextField){
         
         let formatter = DateFormatter()
         formatter.dateFormat = "dd/MM/yyyy"
-        dateTripTF.text = formatter.string(from: datePicker.date)
+        if dateTripTF.isFirstResponder {
+            dateTripTF.text = formatter.string(from: datePicker.date)
+            dateTripTF.resignFirstResponder
+        }
+        else{
+            endDateTextField.text = formatter.string(from: datePicker.date)
+            endDateTextField.resignFirstResponder
+        }
+       
         self.view.endEditing(true)
     }
     
     @objc func cancelDatePicker(){
+        if dateTripTF.isFirstResponder{
+            dateTripTF.resignFirstResponder
+        }
+        else {
+            endDateTextField.resignFirstResponder
+        }
         self.view.endEditing(true)
     }
     
@@ -68,73 +89,25 @@ class AddTripViewController: UIViewController, UINavigationControllerDelegate, U
     /// Add button controller
     ///
     /// - Parameter sender: <#sender description#>
+    
     @IBAction func addButton(_ sender: Any) {
-        if let nameToSave = nameTripTF.text  {
-            if let img =  myImageView.image?.jpegData(compressionQuality: 0.8) {
-                let trip = Trips(context: CoreDataManager.context)
-                trip.name = nameToSave
-                trip.image = img
-                //self.saveNewTrip(withName: nameToSave, withImg : img as NSData)
-            }
+        let name = nameTripTF.text ?? ""
+        let beginDate = dateTripTF.text ?? ""
+        let endDate = endDateTextField.text ?? ""
+        guard (name != "") && (beginDate != "") && (endDate != "") else { return }
+        if let img =  myImageView.image?.jpegData(compressionQuality: 0.8) {
+            let trip = Trips(context: CoreDataManager.context)
+            trip.name = name
+            trip.image = img
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "dd/MM/yyyy"
+            trip.beginDate = dateFormatter.date(from: beginDate)
+            trip.endDate = dateFormatter.date(from: endDate)
+            //self.saveNewTrip(withName: nameToSave, withImg : img as NSData)
         }
     }
     
-    //MARK: - Trips management -
-    /// Saves the trip in the CoreData
-    ///
-    /// - Parameter name: The name of the trip
-//    func saveNewTrip(withName name: String, withImg img: NSData) {
-//
-//
-//        // création ogjet trip
-//        let trip = Trips(context: CoreDataManager.context)
-//        //modifier le nom
-//        trip.name = name
-//        trip.image = img as Data
-//        do{
-//            try context.save()
-//
-//        }
-//        catch let error as NSError{
-//            self.alert(error: error)
-//            return
-//        }
-//    }
     
-    /// Get the context
-    ///
-    /// - Parameters:
-    ///   - errorMsg: <#errorMsg description#>
-    ///   - userInfoMsg: <#userInfoMsg description#>
-    /// - Returns: <#return value description#>
-    func getContext(errorMsg : String, userInfoMsg: String = "Could not retrieve data context") -> NSManagedObjectContext?{
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-            self.alert(withTitle: errorMsg, andMessage: userInfoMsg)
-            return nil
-        }
-        return appDelegate.persistentContainer.viewContext
-    }
-    
-    
-    /// Show an alert with two messages
-    ///
-    /// - Parameters:
-    ///   - title: <#title description#>
-    ///   - msg: <#msg description#>
-    func alert(withTitle title : String, andMessage msg : String = ""){
-        let alert = UIAlertController(title: title, message: msg, preferredStyle: .alert)
-        let cancelAction = UIAlertAction(title:"Ok",
-                                         style: .default)
-        alert.addAction(cancelAction)
-        present(alert, animated:true)
-    }
-    
-    /// Show an alert of the error in parameter
-    ///
-    /// - Parameter error: <#error description#>
-    func alert(error: NSError){
-        self.alert(withTitle: "\(error)", andMessage:"\(error.userInfo)")
-    }
     
     // MARK: - UIImagePickerControllerDelegate Methods
     
