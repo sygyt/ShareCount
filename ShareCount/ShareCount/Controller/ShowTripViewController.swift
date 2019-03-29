@@ -24,16 +24,6 @@ class ShowTripViewController: UIViewController, UITableViewDelegate, UITableView
             self.navigationItem.title = atrip.name
         }
         
-//        //load members from CoreData
-//        guard let context = self.getContext(errorMsg: "Could not load data") else {return}
-//        let request : NSFetchRequest<Members> = Members.fetchRequest()
-//        do{
-//            try self.members = context.fetch(request)
-//        }
-//        catch let error as NSError{
-//            self.alert(error: error)
-//        }
-        
         //controlerFetchTest
         self.fetchResultController = MembersFetchResultController(tableView: self.membersTableView)
         // change to a direct call of fetchresultcontroler

@@ -71,7 +71,10 @@ class AddTripViewController: UIViewController, UINavigationControllerDelegate, U
     @IBAction func addButton(_ sender: Any) {
         if let nameToSave = nameTripTF.text  {
             if let img =  myImageView.image?.jpegData(compressionQuality: 0.8) {
-                self.saveNewTrip(withName: nameToSave, withImg : img as NSData)
+                let trip = Trips(context: CoreDataManager.context)
+                trip.name = nameToSave
+                trip.image = img
+                //self.saveNewTrip(withName: nameToSave, withImg : img as NSData)
             }
         }
     }
@@ -80,22 +83,23 @@ class AddTripViewController: UIViewController, UINavigationControllerDelegate, U
     /// Saves the trip in the CoreData
     ///
     /// - Parameter name: The name of the trip
-    func saveNewTrip(withName name: String, withImg img: NSData) {
-        guard let context = self.getContext(errorMsg: "Could not load data") else {return}
-        // création ogjet trip
-        let trip = Trips(context: context)
-        //modifier le nom
-        trip.name = name
-        trip.image = img as Data
-        do{
-            try context.save()
-            
-        }
-        catch let error as NSError{
-            self.alert(error: error)
-            return
-        }
-    }
+//    func saveNewTrip(withName name: String, withImg img: NSData) {
+//
+//
+//        // création ogjet trip
+//        let trip = Trips(context: CoreDataManager.context)
+//        //modifier le nom
+//        trip.name = name
+//        trip.image = img as Data
+//        do{
+//            try context.save()
+//
+//        }
+//        catch let error as NSError{
+//            self.alert(error: error)
+//            return
+//        }
+//    }
     
     /// Get the context
     ///
@@ -150,6 +154,20 @@ class AddTripViewController: UIViewController, UINavigationControllerDelegate, U
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         dismiss(animated: true, completion: nil)
+    }
+    
+    
+    // textField delegate
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool{
+        if let text = textField.text{
+            if text != ""{
+                textField.resignFirstResponder()
+                return true
+            }
+        }
+        return false
+        
     }
     
 }
