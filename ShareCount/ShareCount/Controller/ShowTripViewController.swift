@@ -19,11 +19,9 @@ class ShowTripViewController: UIViewController, UITableViewDelegate, UITableView
     override func viewDidLoad() {
         super.viewDidLoad()
         //affect setected trip to label
-        print(CurrentTrip.sharedInstance)
         if let atrip = CurrentTrip.sharedInstance{
             self.navigationItem.title = atrip.name
         }
-        
         //controlerFetchTest
         self.fetchResultController = MembersFetchResultController(tableView: self.membersTableView)
         // change to a direct call of fetchresultcontroler
@@ -78,7 +76,9 @@ class ShowTripViewController: UIViewController, UITableViewDelegate, UITableView
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = self.membersTableView.dequeueReusableCell(withIdentifier: "membersCell", for: indexPath) as! MemberTableViewCell
         let member = self.fetchResultController.membersFetched.object(at: indexPath)
-        cell.nameMemberLabel.text = member.firstName! + " " + member.lastName! //verifier que c'est pas nil
+        if let firstname = member.firstName, let lastname = member.lastName{
+            cell.nameMemberLabel.text = firstname + " " + lastname
+        }
 //        if let fn :String = (self.members[indexPath.row].firstName), let ln :String = (self.members[indexPath.row].lastName) {
 //            cell.nameMemberLabel.text = fn + " " + ln
 //        }

@@ -38,6 +38,7 @@ class MemberViewController: UIViewController {
         member.firstName = firstName
         member.lastName = lastName
         member.arrivalDate = arrivalDate
+        member.trip = CurrentTrip.sharedInstance
     
     }
     
@@ -51,9 +52,7 @@ class MemberViewController: UIViewController {
     }
     */
     
-    @IBAction func actionForUnwindButton(sender: AnyObject) {
-        print("actionForUnwindButton");
-    }
+    @IBAction func actionForUnwindButton(sender: AnyObject) {}
     
     
 

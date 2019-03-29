@@ -1,26 +1,25 @@
 //
-//  MembersFetchResultController.swift
+//  ExpenseFetchResultController.swift
 //  ShareCount
 //
-//  Created by Simon Gayet on 24/03/2019.
+//  Created by Quentin FRANCE on 29/03/2019.
 //  Copyright © 2019 Simon GAYET Quentin FRANCE. All rights reserved.
 //
 
 import UIKit
 import CoreData
 
-class MembersFetchResultController: NSObject, NSFetchedResultsControllerDelegate {
+class ExpenseFetchResultController: NSObject, NSFetchedResultsControllerDelegate  {
     
-    let membersTableView : UITableView
-    var members : [Members] = []
+    let expensesTableView : UITableView
+    var expenses : [Expense] = []
     
     init(tableView : UITableView){
-        self.membersTableView = tableView
+        self.expensesTableView = tableView
         super.init()
-        //load members from CoreData
-    
+        //load expenses from CoreData
         do{
-            try self.membersFetched.performFetch()
+            try self.expensesFetched.performFetch()
         }
         catch let error as NSError{
             self.alert(error: error)
@@ -30,12 +29,9 @@ class MembersFetchResultController: NSObject, NSFetchedResultsControllerDelegate
     //----------------------------------------------------------------
     // MARK: - FetchResultController
     
-    lazy var membersFetched : NSFetchedResultsController<Members> = {
+    lazy var expensesFetched : NSFetchedResultsController<Expense> = {
         // prepare a request
-        let request : NSFetchRequest<Members> = Members.fetchRequest(); request.sortDescriptors = [NSSortDescriptor(key:#keyPath(Members.lastName),ascending:true),NSSortDescriptor(key:#keyPath(Members.firstName) ,ascending:true)] //change to arrival date
-        if let currentTrip = CurrentTrip.sharedInstance{
-            request.predicate = NSPredicate(format: "trip == %@", currentTrip)
-        }
+        let request : NSFetchRequest<Expense> = Expense.fetchRequest(); request.sortDescriptors = [NSSortDescriptor(key:#keyPath(Expense.nameExpense),ascending:true),NSSortDescriptor(key:#keyPath(Expense.nameExpense) ,ascending:true)]
         let fetchResultController = NSFetchedResultsController(fetchRequest: request, managedObjectContext: CoreDataManager.context, sectionNameKeyPath: nil, cacheName: nil) //force unwrapp need to change
         fetchResultController.delegate = self
         return fetchResultController
@@ -45,12 +41,12 @@ class MembersFetchResultController: NSObject, NSFetchedResultsControllerDelegate
     // MARK: - NSFetchResultController delegate protocol
     
     func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>){
-        self.membersTableView.beginUpdates()
+        self.expensesTableView.beginUpdates()
     }
     
-   
+    
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>){
-        self.membersTableView.endUpdates()
+        self.expensesTableView.endUpdates()
         CoreDataManager.save()
     }
     
@@ -58,13 +54,13 @@ class MembersFetchResultController: NSObject, NSFetchedResultsControllerDelegate
         switch type {
         case .insert:
             if let newIndexPath = newIndexPath{
-                self.membersTableView.insertRows(at: [newIndexPath], with: .automatic) }
+                self.expensesTableView.insertRows(at: [newIndexPath], with: .automatic) }
         case .delete:
             if let indexPath = indexPath{
-                self.membersTableView.deleteRows(at: [indexPath], with: .automatic) }
+                self.expensesTableView.deleteRows(at: [indexPath], with: .automatic) }
         case .update:
             if let indexPath = indexPath{
-                self.membersTableView.reloadRows(at: [indexPath], with: .automatic) }
+                self.expensesTableView.reloadRows(at: [indexPath], with: .automatic) }
         default:
             break
         }
@@ -89,5 +85,5 @@ class MembersFetchResultController: NSObject, NSFetchedResultsControllerDelegate
     func alert(error: NSError){
         self.alert(withTitle: "\(error)", andMessage:"\(error.userInfo)")
     }
-
+    
 }
