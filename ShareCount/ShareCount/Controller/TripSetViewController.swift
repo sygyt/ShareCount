@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 import CoreData
 
-class TripsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class TripSetViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     //Collection of trips for self.tripsTableView
     var trips : [Trips] = []

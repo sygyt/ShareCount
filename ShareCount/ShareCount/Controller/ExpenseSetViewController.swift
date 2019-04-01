@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import CoreData
 
-class ExpensesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class ExpenseSetViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     var expenses : [Expense] = []
     var expenseFetchResultController : ExpenseFetchResultController!

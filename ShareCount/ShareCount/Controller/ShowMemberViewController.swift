@@ -51,5 +51,17 @@ class ShowMemberViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    /// Prepare screen transitions
+    ///
+    /// - Parameters:
+    ///   - segue: <#segue description#>
+    ///   - sender: <#sender description#>
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+
+        let memberViewController = segue.destination as! AddMemberViewController
+        memberViewController.trip = CurrentTrip.sharedInstance
+        memberViewController.member = self.member!
+    }
 
 }

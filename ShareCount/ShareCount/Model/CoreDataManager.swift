@@ -49,4 +49,5 @@ class CoreDataManager{
             return error
         }
     }
+    
 }

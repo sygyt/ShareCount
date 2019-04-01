@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import CoreData
 
-class ShowTripViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class MemberSetViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     
     @IBOutlet weak var membersTableView: UITableView!
@@ -99,14 +99,13 @@ class ShowTripViewController: UIViewController, UITableViewDelegate, UITableView
     ///   - sender: <#sender description#>
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == self.segueAddMemberId{
-            let memberViewController = segue.destination as! MemberViewController
+            let memberViewController = segue.destination as! AddMemberViewController
             memberViewController.trip = CurrentTrip.sharedInstance
         }
         else {
             if segue.identifier == self.segueShowMemberId{
                 if let indexPath = self.membersTableView.indexPathForSelectedRow{
                     let destController = segue.destination as! ShowMemberViewController
-                    let memberViewController = segue.destination as! ShowMemberViewController
                     destController.member = self.fetchResultController.membersFetched.object(at: indexPath)
                     self.membersTableView.deselectRow(at: indexPath, animated: true)
                 }
