@@ -5,18 +5,26 @@
 //  Created by Simon Gayet on 01/04/2019.
 //  Copyright © 2019 Simon GAYET Quentin FRANCE. All rights reserved.
 //
-
+import Foundation
 import UIKit
+import CoreData
 
-class AddExpenseViewController: UIViewController {
+class AddExpenseViewController: UIViewController{
 
+    var memberTableViewController: MemberParticipateTableViewController!
+    
+    @IBOutlet weak var nameExpenseTextField: UITextField!
     @IBOutlet weak var expenseDatePickerLabel: UITextField!
+    @IBOutlet weak var memberParticipateTableView: UITableView!
+    
+    
     
     let datePicker = UIDatePicker()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.showDatePicker()
+        self.memberTableViewController = MemberParticipateTableViewController(tableView: self.memberParticipateTableView)
         // Do any additional setup after loading the view.
     }
     
@@ -61,6 +69,23 @@ class AddExpenseViewController: UIViewController {
     
     @objc func cancelDatePicker(){
         self.view.endEditing(true)
+    }
+    
+    @IBAction func addExpense(_ sender: Any) {
+        print("in add")
+        if self.memberTableViewController.isCorectTotal() {
+            print("in total")
+            let name = nameExpenseTextField.text ?? ""
+            let date = expenseDatePickerLabel.text ?? ""
+            guard (name != "") && (date != "") else { return }
+            let expense = Expense(context: CoreDataManager.context)
+            expense.nameExpense = name
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "dd/MM/yyyy"
+            expense.dateExpense = dateFormatter.date(from: date)
+            CoreDataManager.save()
+            memberTableViewController.addParticipate(expense: expense)
+        }
     }
 
 }

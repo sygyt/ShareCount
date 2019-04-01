@@ -35,6 +35,9 @@
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="F0a-rL-NXW" id="U51-8T-1qz"/>
+                                </connections>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Photo" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f2O-09-MWh">
                                 <rect key="frame" x="165" y="147" width="45.5" height="21"/>
@@ -132,6 +135,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1jm-Yo-YiI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <customObject id="F0a-rL-NXW" customClass="TextFieldDelegate" customModule="ShareCount" customModuleProvider="target"/>
                 <exit id="Ubw-iD-C2j" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="-258" y="-653"/>
@@ -338,6 +342,9 @@
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="F4k-J6-aNv" id="EQj-m2-vFO"/>
+                                </connections>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date  :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MuY-ki-FFO">
                                 <rect key="frame" x="16" y="73" width="50" height="21"/>
@@ -352,16 +359,24 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6T8-pE-5gD">
-                                <rect key="frame" x="260" y="516" width="46" height="30"/>
-                                <state key="normal" title="Button">
+                                <rect key="frame" x="251" y="516" width="55" height="30"/>
+                                <state key="normal" title="Confirm">
                                     <color key="titleColor" red="0.2470588235" green="0.31764705879999999" blue="0.70980392160000005" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="addExpencesButton:" destination="avh-Ah-dh2" eventType="touchUpInside" id="AN1-Xc-RCe"/>
+                                    <action selector="addExpense:" destination="avh-Ah-dh2" eventType="touchUpInside" id="mcA-AP-atZ"/>
+                                    <segue destination="0eL-XY-rNL" kind="unwind" unwindAction="unwindToShowTripWithSender:" id="XvB-ZQ-HCg"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vgo-o6-G0R">
                                 <rect key="frame" x="70" y="516" width="48" height="30"/>
                                 <state key="normal" title="Cancel">
                                     <color key="titleColor" red="0.2470588235" green="0.31764705879999999" blue="0.70980392160000005" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 </state>
+                                <connections>
+                                    <segue destination="0eL-XY-rNL" kind="unwind" unwindAction="unwindToShowTripWithSender:" id="qAL-eu-Uf4"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oP2-gP-SlU">
                                 <rect key="frame" x="16" y="121" width="47" height="21"/>
@@ -379,7 +394,7 @@
                                 <rect key="frame" x="16" y="150" width="343" height="358"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="v8G-3u-21d">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="memberParticipateCell" id="v8G-3u-21d" customClass="MemberPaticipateTableViewCell" customModule="ShareCount" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="343" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="v8G-3u-21d" id="gdy-iK-Kd1">
@@ -422,6 +437,11 @@
                                                 <constraint firstItem="Qrp-Rg-oWf" firstAttribute="centerY" secondItem="gdy-iK-Kd1" secondAttribute="centerY" id="y6e-jg-frc"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="nameLabel" destination="Qrp-Rg-oWf" id="v6c-6y-To7"/>
+                                            <outlet property="participationTextField" destination="W12-yi-nHP" id="Q3n-Sw-evL"/>
+                                            <outlet property="receiveTextField" destination="lL5-gV-QeA" id="EN9-y8-P1z"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -457,9 +477,13 @@
                     </view>
                     <connections>
                         <outlet property="expenseDatePickerLabel" destination="gNd-Yr-VvC" id="xic-c1-U0f"/>
+                        <outlet property="memberParticipateTableView" destination="Qrt-6m-eJB" id="5dc-Mp-YwK"/>
+                        <outlet property="nameExpenseTextField" destination="8Vj-db-Ypf" id="XIL-pd-cu3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tJD-CV-RY2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <customObject id="F4k-J6-aNv" customClass="TextFieldDelegate" customModule="ShareCount" customModuleProvider="target"/>
+                <exit id="0eL-XY-rNL" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="3308" y="450.22488755622192"/>
         </scene>
@@ -802,7 +826,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="0gr-cO-FvC">
             <objects>
-                <tabBarController id="oIr-9U-cxO" customClass="TabBarController" customModule="ShareCount" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController id="oIr-9U-cxO" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="B9Q-Ce-RHP">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -899,7 +923,7 @@
         <image name="voyages" width="600" height="400"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="0lT-M9-4tZ"/>
+        <segue reference="458-HB-iUU"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
 </document>

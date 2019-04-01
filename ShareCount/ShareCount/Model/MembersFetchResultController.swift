@@ -12,7 +12,6 @@ import CoreData
 class MembersFetchResultController: NSObject, NSFetchedResultsControllerDelegate {
     
     let membersTableView : UITableView
-    var members : [Members] = []
     
     init(tableView : UITableView){
         self.membersTableView = tableView

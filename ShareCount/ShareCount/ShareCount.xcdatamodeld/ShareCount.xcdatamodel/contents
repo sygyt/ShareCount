@@ -3,7 +3,7 @@
     <entity name="Expense" representedClassName="Expense" syncable="YES" codeGenerationType="class">
         <attribute name="dateExpense" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="nameExpense" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="newRelationship" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Participate" inverseName="newRelationship" inverseEntity="Participate" syncable="YES"/>
+        <relationship name="concerned" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Participate" inverseName="expenseParticipe" inverseEntity="Participate" syncable="YES"/>
     </entity>
     <entity name="Members" representedClassName="Members" syncable="YES" codeGenerationType="class">
         <attribute name="arrivalDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
@@ -16,8 +16,8 @@
     <entity name="Participate" representedClassName="Participate" syncable="YES" codeGenerationType="class">
         <attribute name="amountParticipate" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="amountReceive" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="expenseParticipe" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Expense" inverseName="concerned" inverseEntity="Expense" syncable="YES"/>
         <relationship name="memberParticipate" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Members" inverseName="participateMember" inverseEntity="Members" syncable="YES"/>
-        <relationship name="newRelationship" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Expense" inverseName="newRelationship" inverseEntity="Expense" syncable="YES"/>
     </entity>
     <entity name="Trips" representedClassName="Trips" syncable="YES" codeGenerationType="class">
         <attribute name="beginDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>

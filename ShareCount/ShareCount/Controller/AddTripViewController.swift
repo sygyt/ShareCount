@@ -5,7 +5,7 @@
 //  Created by Simon GAYET on 26/03/2019.
 //  Copyright © 2019 Simon GAYET Quentin FRANCE. All rights reserved.
 //
-
+import Foundation
 import UIKit
 import CoreData
 
@@ -129,18 +129,5 @@ class AddTripViewController: UIViewController, UITextFieldDelegate, UINavigation
         dismiss(animated: true, completion: nil)
     }
     
-    
-    // textField delegate
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool{
-        if let text = textField.text{
-            if text != ""{
-                textField.resignFirstResponder()
-                return true
-            }
-        }
-        return false
-        
-    }
     
 }

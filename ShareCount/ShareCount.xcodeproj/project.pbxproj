@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		112E76262251FE4D003C5CC2 /* AddExpenseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 112E76252251FE4D003C5CC2 /* AddExpenseViewController.swift */; };
+		112E762822528042003C5CC2 /* MemberParticipateTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 112E762722528042003C5CC2 /* MemberParticipateTableViewController.swift */; };
+		112E762B2252847B003C5CC2 /* MemberSetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 112E762A2252847B003C5CC2 /* MemberSetViewModel.swift */; };
+		112E762D22529461003C5CC2 /* MemberPaticipateTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 112E762C22529461003C5CC2 /* MemberPaticipateTableViewCell.swift */; };
 		11C9955522468C580064AA4B /* TripTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11C9955422468C580064AA4B /* TripTableViewCell.swift */; };
 		11C9955922469E2E0064AA4B /* MemberSetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11C9955822469E2E0064AA4B /* MemberSetViewController.swift */; };
 		11C9955F2247910D0064AA4B /* MemberTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11C9955E2247910D0064AA4B /* MemberTableViewCell.swift */; };
@@ -51,6 +54,9 @@
 
 /* Begin PBXFileReference section */
 		112E76252251FE4D003C5CC2 /* AddExpenseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExpenseViewController.swift; sourceTree = "<group>"; };
+		112E762722528042003C5CC2 /* MemberParticipateTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberParticipateTableViewController.swift; sourceTree = "<group>"; };
+		112E762A2252847B003C5CC2 /* MemberSetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberSetViewModel.swift; sourceTree = "<group>"; };
+		112E762C22529461003C5CC2 /* MemberPaticipateTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberPaticipateTableViewCell.swift; sourceTree = "<group>"; };
 		11C9955422468C580064AA4B /* TripTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripTableViewCell.swift; sourceTree = "<group>"; };
 		11C9955822469E2E0064AA4B /* MemberSetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberSetViewController.swift; sourceTree = "<group>"; };
 		11C9955E2247910D0064AA4B /* MemberTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberTableViewCell.swift; sourceTree = "<group>"; };
@@ -106,6 +112,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		112E762922528446003C5CC2 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				112E762A2252847B003C5CC2 /* MemberSetViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		11C995642247E3840064AA4B /* Delegate */ = {
 			isa = PBXGroup;
 			children = (
@@ -148,6 +162,7 @@
 		9FA81F0722453C02006E47B7 /* ShareCount */ = {
 			isa = PBXGroup;
 			children = (
+				112E762922528446003C5CC2 /* ViewModel */,
 				11C995672247E8280064AA4B /* Model */,
 				11C995642247E3840064AA4B /* Delegate */,
 				9FA81F3C224552B5006E47B7 /* Views */,
@@ -191,6 +206,7 @@
 				11C99562224793900064AA4B /* AddMemberViewController.swift */,
 				170CE8C5224E6EC70016B254 /* ShowMemberViewController.swift */,
 				112E76252251FE4D003C5CC2 /* AddExpenseViewController.swift */,
+				112E762722528042003C5CC2 /* MemberParticipateTableViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -201,6 +217,7 @@
 				170CE8C1224E56F20016B254 /* ExpenseTableViewCell.swift */,
 				11C9955422468C580064AA4B /* TripTableViewCell.swift */,
 				11C9955E2247910D0064AA4B /* MemberTableViewCell.swift */,
+				112E762C22529461003C5CC2 /* MemberPaticipateTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -339,15 +356,18 @@
 				170CE8C2224E56F20016B254 /* ExpenseTableViewCell.swift in Sources */,
 				9F18B826224A7CA4000C1BBA /* AddTripViewController.swift in Sources */,
 				11C9955922469E2E0064AA4B /* MemberSetViewController.swift in Sources */,
+				112E762B2252847B003C5CC2 /* MemberSetViewModel.swift in Sources */,
 				170CE8C4224E57F00016B254 /* ExpenseSetViewController.swift in Sources */,
 				11C9955522468C580064AA4B /* TripTableViewCell.swift in Sources */,
 				170CE8C0224E52F40016B254 /* ExpenseFetchResultController.swift in Sources */,
 				11C995662247E3F40064AA4B /* TextFieldDelegate.swift in Sources */,
 				9FA81F0B22453C03006E47B7 /* TripSetViewController.swift in Sources */,
 				11C9955F2247910D0064AA4B /* MemberTableViewCell.swift in Sources */,
+				112E762822528042003C5CC2 /* MemberParticipateTableViewController.swift in Sources */,
 				11C99563224793900064AA4B /* AddMemberViewController.swift in Sources */,
 				9FA81F1122453C03006E47B7 /* ShareCount.xcdatamodeld in Sources */,
 				9FA81F0922453C02006E47B7 /* AppDelegate.swift in Sources */,
+				112E762D22529461003C5CC2 /* MemberPaticipateTableViewCell.swift in Sources */,
 				11C995692247E8C20064AA4B /* MembersFetchResultController.swift in Sources */,
 				112E76262251FE4D003C5CC2 /* AddExpenseViewController.swift in Sources */,
 				9F18B824224A322D000C1BBA /* CurrentTrip.swift in Sources */,
