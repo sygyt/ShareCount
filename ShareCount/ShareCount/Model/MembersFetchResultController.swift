@@ -60,7 +60,8 @@ class MembersFetchResultController: NSObject, NSFetchedResultsControllerDelegate
                 self.membersTableView.insertRows(at: [newIndexPath], with: .automatic) }
         case .delete:
             if let indexPath = indexPath{
-                self.membersTableView.deleteRows(at: [indexPath], with: .automatic) }
+                self.membersTableView.deleteRows(at: [indexPath], with: .automatic)
+            }
         case .update:
             if let indexPath = indexPath{
                 self.membersTableView.reloadRows(at: [indexPath], with: .automatic) }

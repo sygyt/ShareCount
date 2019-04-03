@@ -9,22 +9,27 @@ import Foundation
 import UIKit
 import CoreData
 
-class AddExpenseViewController: UIViewController{
+class AddExpenseViewController: UIViewController, UITextFieldDelegate{
 
     var memberTableViewController: MemberParticipateTableViewController!
     
     @IBOutlet weak var nameExpenseTextField: UITextField!
     @IBOutlet weak var expenseDatePickerLabel: UITextField!
     @IBOutlet weak var memberParticipateTableView: UITableView!
+    @IBOutlet weak var totalLabel: UILabel!
     
     
-    
+    var total : Int = 0
     let datePicker = UIDatePicker()
     
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.showDatePicker()
         self.memberTableViewController = MemberParticipateTableViewController(tableView: self.memberParticipateTableView)
+        self.datePicker.minimumDate = CurrentTrip.sharedInstance?.beginDate
+        self.datePicker.maximumDate = CurrentTrip.sharedInstance?.endDate
+        self.totalLabel.text = String(total)
         // Do any additional setup after loading the view.
     }
     
@@ -39,6 +44,26 @@ class AddExpenseViewController: UIViewController{
     }
     */
     
+    // MARK: - Text Field Delegate Function
+    
+    
+    
+    @IBAction func participationTextFieldBeingEdit(_ sender: UITextField) {
+        self.total += -(Int(sender.text ?? "0") ?? 0)
+        print(total)
+    }
+    
+    
+    @IBAction func participationTextFieldEndEdit(_ sender: UITextField, forEvent event: UIEvent) {
+        self.total += (Int(sender.text ?? "0") ?? 0)
+        self.totalLabel.text = String(total)
+        print(total)
+    }
+    
+    
+    @IBAction func divideButton(_ sender: Any) {
+        memberTableViewController.doDivide(total: self.total)
+    }
     
     // MARK: - Date Picker
     
@@ -72,9 +97,10 @@ class AddExpenseViewController: UIViewController{
     }
     
     @IBAction func addExpense(_ sender: Any) {
-        print("in add")
-        if self.memberTableViewController.isCorectTotal() {
-            print("in total")
+       
+        
+        if self.memberTableViewController.isCorectTotal() && self.memberTableViewController.hasParticiper() {
+            
             let name = nameExpenseTextField.text ?? ""
             let date = expenseDatePickerLabel.text ?? ""
             guard (name != "") && (date != "") else { return }
@@ -87,5 +113,8 @@ class AddExpenseViewController: UIViewController{
             memberTableViewController.addParticipate(expense: expense)
         }
     }
-
+    
+    
+   
+    
 }

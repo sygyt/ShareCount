@@ -12,7 +12,6 @@ import CoreData
 
 class ExpenseSetViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
-    var expenses : [Expense] = []
     var expenseFetchResultController : ExpenseFetchResultController!
     
     //TableView Controller that display the collection of Expenses
@@ -21,8 +20,28 @@ class ExpenseSetViewController: UIViewController, UITableViewDelegate, UITableVi
     override func viewDidLoad() {
         super.viewDidLoad()
         self.expenseFetchResultController = ExpenseFetchResultController(tableView: self.expensesTableView)
+        self.expensesTableView.dataSource = self
+        self.expensesTableView.delegate = self
     }
     
+    //MARK: - TableView delegate
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let delete = deleteAction(at: indexPath)
+        return UISwipeActionsConfiguration(actions: [delete])
+    }
+    
+    func deleteAction(at indexPath: IndexPath) -> UIContextualAction{
+        let expense = self.expenseFetchResultController.expensesFetched.object(at: indexPath)
+        let action = UIContextualAction(style: .destructive, title: "Delete") { (action, view, completion) in
+            CoreDataManager.context.delete(expense)
+            completion(true)
+        }
+        let logotrash = UIImage(named: "Trash")
+        action.image = logotrash
+        action.backgroundColor = UIColor.red
+        return action
+    }
     
     //MARK: - TableView data source protocol -
     
@@ -42,6 +61,22 @@ class ExpenseSetViewController: UIViewController, UITableViewDelegate, UITableVi
         }
         return cell
     }
+    
+    //MARK : - Navigation methods -
+    
+    let segueShowExpenseId = "showExpense"
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == self.segueShowExpenseId{
+            if let indexPath = self.expensesTableView.indexPathForSelectedRow{
+                let destController = segue.destination as! ShowExpenseViewController
+                destController.expense = self.expenseFetchResultController.expensesFetched.object(at: indexPath)
+                self.expensesTableView.deselectRow(at: indexPath, animated: true)
+            }
+        }
+    }
+    
+    @IBAction func unwindToShowExpenses(sender: UIStoryboardSegue) {}
     
     
 }

@@ -113,7 +113,7 @@ class MemberSetViewController: UIViewController, UITableViewDelegate, UITableVie
         }
     }
     
-    @IBAction func unwindToShowTrip(sender: UIStoryboardSegue) {}
+    @IBAction func unwindToShowMembers(sender: UIStoryboardSegue) {}
     
     
     /// Get the context

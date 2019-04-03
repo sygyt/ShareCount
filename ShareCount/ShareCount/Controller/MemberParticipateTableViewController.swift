@@ -17,8 +17,10 @@ class MemberParticipateTableViewController: NSObject, UITableViewDataSource, UIT
     var memberViewModel : MemberSetViewModel!
     let fetchResultController : MembersFetchResultController
     
+  
+    
+    
     init(tableView: UITableView) {
-        
         self.tableView = tableView
         self.fetchResultController = MembersFetchResultController(tableView : tableView)
         super.init()
@@ -26,6 +28,7 @@ class MemberParticipateTableViewController: NSObject, UITableViewDataSource, UIT
         self.tableView.dataSource = self
         self.memberViewModel.delegate = self
         self.tableView.delegate = self
+        
         
     }
     
@@ -40,8 +43,10 @@ class MemberParticipateTableViewController: NSObject, UITableViewDataSource, UIT
     func deleteAction(at indexPath: IndexPath) -> UIContextualAction{
         let action = UIContextualAction(style: .destructive, title: "Delete") { (action, view, completion) in
             //on supprime la personne de la table
+            
             self.memberDeleted(at: indexPath)
             self.memberViewModel.delete(personAt: indexPath.row)
+            self.tableView.reloadData()
             completion(true)
         }
         let logotrash = UIImage(named: "Trash")
@@ -72,8 +77,18 @@ class MemberParticipateTableViewController: NSObject, UITableViewDataSource, UIT
         return cell
     }
     
-    
-    
+    // divide func nb: not correct form
+    // shame on this func
+    func doDivide( total: Int){
+        let cells = tableView.visibleCells
+        let size = cells.count
+        let sharedValue = total/size
+        for i in 0..<size {
+            let cell = cells[i] as! MemberPaticipateTableViewCell
+            cell.receiveTextField.text = String(sharedValue)
+        }
+
+    }
     
     // add function
     
@@ -81,9 +96,9 @@ class MemberParticipateTableViewController: NSObject, UITableViewDataSource, UIT
         var totalParticipation : Int16 = 0
         var totalReceive : Int16 = 0
         
-        let lenth = self.tableView.numberOfRows(inSection: 1)
         let cells = tableView.visibleCells
-        for i in 0..<lenth {
+        let size = cells.count
+        for i in 0..<size {
             let cell = cells[i] as! MemberPaticipateTableViewCell
             totalParticipation += cell.getParticipation()
             totalReceive += cell.getReveive()
@@ -91,19 +106,27 @@ class MemberParticipateTableViewController: NSObject, UITableViewDataSource, UIT
         return (totalParticipation == totalReceive)
     }
     
+    func hasParticiper() -> Bool {
+        let size = tableView.visibleCells.count
+        return (size != 0)
+    }
+    
 
     func addParticipate(expense: Expense) {
-        let lenth = self.tableView.numberOfRows(inSection: 1)
+        
         let cells = tableView.visibleCells
-        for i in 0..<lenth {
+        let size = cells.count
+        for i in 0..<size {
             let cell = cells[i] as! MemberPaticipateTableViewCell
-            let participate = Participate(context: CoreDataManager.context)
-            participate.amountParticipate = cell.getParticipation()
-            participate.amountReceive = cell.getReveive()
-            participate.memberParticipate = self.memberViewModel.get(personAt: i)
-            participate.expenseParticipe = expense
-            
+            if (cell.getParticipation() != 0 || cell.getReveive() != 0) {
+                let participate = Participate(context: CoreDataManager.context)
+                participate.amountParticipate = cell.getParticipation()
+                participate.amountReceive = cell.getReveive()
+                participate.memberParticipate = self.memberViewModel.get(personAt: i)
+                participate.expenseParticipe = expense
+            }
         }
+        CoreDataManager.save()
     }
     
     

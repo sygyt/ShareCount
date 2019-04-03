@@ -38,6 +38,14 @@ class AddMemberViewController: UIViewController {
             self.itsUpdate = true
             //ajouter la date
         }
+        
+        // datepicker constraint
+        self.arrivalDatePicker.minimumDate = trip?.beginDate
+        self.arrivalDatePicker.maximumDate = trip?.endDate
+        self.leavingDatePicker.minimumDate = trip?.beginDate
+        self.leavingDatePicker.maximumDate = trip?.endDate
+        
+        
     }
     
     /// Add button controller
