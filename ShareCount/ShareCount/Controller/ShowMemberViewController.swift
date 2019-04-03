@@ -38,7 +38,7 @@ class ShowMemberViewController: UIViewController, UITableViewDataSource, UITable
         let leavingDate = memberViewModel.getLeavingDate()
         self.leaveDateLabel.text = dateFormatter.string(from: leavingDate)
         let balance = memberViewModel.getBalance()
-        self.totalLabel.text = String(balance) + " $"
+        self.totalLabel.text = String(trunc(x : balance)) + " $"
         
         if balance < 0 {
             self.totalLabel.textColor = UIColor.red
@@ -103,13 +103,21 @@ class ShowMemberViewController: UIViewController, UITableViewDataSource, UITable
         let cell = tableView.dequeueReusableCell(withIdentifier: "showExpenseCell", for: indexPath) as! MemberPaticipateTableViewCell
         print(cell)
         if let participate = self.participateViewModel.get(personAt: indexPath.row){
-            cell.configure(member: participate.memberParticipate!)
-            cell.participationLabel.text = String(participate.amountParticipate)
+            cell.nameLabel.text = participate.expenseParticipe?.nameExpense
+            cell.participationLabel.text = String(trunc(x : participate.amountParticipate))
             cell.participationLabel.textColor = UIColor.red
-            cell.receiveLabel.text = String(participate.amountReceive)
+            cell.receiveLabel.text = String(trunc(x : participate.amountReceive))
             cell.receiveLabel.textColor = UIColor.green
         }
         return cell
     }
 
+    
+    // MARK : - Helper methods -
+    /// Truncate the double to 2 decimals
+    ///
+    /// - Parameter x: x double to truncate
+    func trunc(x:Double) -> Double{
+        return Double(round(100*x)/100)
+    }
 }

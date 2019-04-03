@@ -79,10 +79,10 @@ class MemberParticipateTableViewController: NSObject, UITableViewDataSource, UIT
     
     // divide func nb: not correct form
     // shame on this func
-    func doDivide( total: Int){
+    func doDivide( total: Double){
         let cells = tableView.visibleCells
         let size = cells.count
-        let sharedValue = total/size
+        let sharedValue = total/Double(size)
         for i in 0..<size {
             let cell = cells[i] as! AddMemberParticipateTableViewCell
             cell.receiveTF.text = String(sharedValue)
@@ -118,6 +118,7 @@ class MemberParticipateTableViewController: NSObject, UITableViewDataSource, UIT
         let size = cells.count
         for i in 0..<size {
             let cell = cells[i] as! AddMemberParticipateTableViewCell
+            print(cell.nameLabel)
             if (cell.getParticipation() != 0 || cell.getReveive() != 0) {
                 let participate = Participate(context: CoreDataManager.context)
                 participate.amountParticipate = cell.getParticipation()

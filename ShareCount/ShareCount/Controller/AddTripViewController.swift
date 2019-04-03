@@ -19,12 +19,14 @@ class AddTripViewController: UIViewController, UITextFieldDelegate, UINavigation
     @IBOutlet weak var myImageView: UIImageView!
     let datePicker = UIDatePicker()
     let imagePicker = UIImagePickerController()
-    
+   
     override func viewDidLoad() {
         super.viewDidLoad()
         imagePicker.delegate = self
         self.dateTripTF.delegate = self
         self.endDateTextField.delegate = self
+        datePicker.datePickerMode = .date
+
     }
 
     @IBAction func loadImageButton(_ sender: Any) {
@@ -42,6 +44,27 @@ class AddTripViewController: UIViewController, UITextFieldDelegate, UINavigation
     func textFieldDidBeginEditing(_ textField: UITextField) {
         showDatePicker(label: textField)
     }
+    
+    //begin edit
+    @IBAction func beginDtaeBeginEdit(_ sender: UITextField) {
+        self.datePicker.minimumDate = nil
+    }
+    
+    @IBAction func endDateEndEdit(_ sender: UITextField) {
+        self.datePicker.maximumDate = nil
+    }
+    
+    
+    //end edit
+    @IBAction func beginDateDidEndEdit(_ sender: Any) {
+        self.datePicker.minimumDate = datePicker.date
+    }
+    
+    @IBAction func endDateDidEndEdit(_ sender: Any) {
+        self.datePicker.maximumDate = datePicker.date
+    }
+    
+    
     
     func showDatePicker(label: UITextField){
         datePicker.datePickerMode = .date

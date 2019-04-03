@@ -78,10 +78,18 @@ class ShowExpenseViewController: UIViewController, UITableViewDataSource, UITabl
             cell.participationLabel.text = String(participate.amountParticipate)
             cell.participationLabel.textColor = UIColor.red
             print(participate.amountReceive)
-            cell.receiveLabel.text = String(participate.amountReceive)
+            cell.receiveLabel.text = String(trunc(x:participate.amountReceive))
             cell.receiveLabel.textColor = UIColor.green
         }
         return cell
     }
 
+    
+    // MARK : - Helper methods -
+    /// Truncate the double to 2 decimals
+    ///
+    /// - Parameter x: x double to truncate
+    func trunc(x:Double) -> Double{
+        return Double(round(100*x)/100)
+    }
 }

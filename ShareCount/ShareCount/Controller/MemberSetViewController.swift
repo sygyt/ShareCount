@@ -82,7 +82,7 @@ class MemberSetViewController: UIViewController, UITableViewDelegate, UITableVie
             cell.nameMemberLabel.text = firstname + " " + lastname
         }
         let balance = memberViewModel.getBalance()
-        cell.balanceMemberLabel.text = String(balance) + "$"
+        cell.balanceMemberLabel.text = String(trunc(x:balance)) + "$"
         if balance < 0 {
             cell.balanceMemberLabel.textColor = UIColor.red
         }
@@ -94,7 +94,7 @@ class MemberSetViewController: UIViewController, UITableViewDelegate, UITableVie
         return cell
     }
     
-    //MARK: - Helpers methods -
+    //MARK: - Navigation methods -
     
     let segueAddMemberId = "addMember"
     let segueShowMemberId = "showMember"
@@ -124,6 +124,15 @@ class MemberSetViewController: UIViewController, UITableViewDelegate, UITableVie
     
     @IBAction func unwindToShowMembers(sender: UIStoryboardSegue) {}
     
+    
+    // MARK : - Helper methods -
+    
+    /// Truncate the double to 2 decimals
+    ///
+    /// - Parameter x: x double to truncate
+    func trunc(x:Double) -> Double{
+        return Double(round(100*x)/100)
+    }
     
     /// Get the context
     ///

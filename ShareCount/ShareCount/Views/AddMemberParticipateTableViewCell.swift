@@ -11,8 +11,16 @@ import UIKit
 class AddMemberParticipateTableViewCell: UITableViewCell, UITextFieldDelegate {
     
     @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var participationTF: UITextField!
-    @IBOutlet weak var receiveTF: UITextField!
+    @IBOutlet weak var participationTF: UITextField! {
+        didSet {
+            self.participationTF.addDoneCancelToolbar()
+        }
+    }
+    @IBOutlet weak var receiveTF: UITextField! {
+        didSet {
+            self.receiveTF.addDoneCancelToolbar()
+        }
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()

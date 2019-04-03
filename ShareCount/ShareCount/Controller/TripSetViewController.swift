@@ -41,7 +41,8 @@ class TripSetViewController: UIViewController, UITableViewDelegate, UITableViewD
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
         let cell = self.tripsTableView.dequeueReusableCell(withIdentifier: "tripCell", for: indexPath) as!TripTableViewCell
         let trip = self.tripsFetchResultController.tripsFetched.object(at: indexPath)
-        
+        let nbMember = trip.members?.allObjects.count
+        cell.nbMemberLabel.text = String(nbMember ?? 0) + " member"
         cell.nameTripLabel.text = trip.name
         if let imgData = trip.image{
             cell.imageTrip.image = UIImage(data: imgData)
