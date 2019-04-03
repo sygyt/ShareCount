@@ -36,6 +36,8 @@
 		9FA81F1622453C18006E47B7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9FA81F1422453C18006E47B7 /* LaunchScreen.storyboard */; };
 		9FA81F2122453C18006E47B7 /* ShareCountTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FA81F2022453C18006E47B7 /* ShareCountTests.swift */; };
 		9FA81F2C22453C18006E47B7 /* ShareCountUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FA81F2B22453C18006E47B7 /* ShareCountUITests.swift */; };
+		9FB4B0622254E0C400D5D345 /* MemberViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB4B0612254E0C400D5D345 /* MemberViewModel.swift */; };
+		9FB4B0642255214500D5D345 /* AddMemberParticipateTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB4B0632255214500D5D345 /* AddMemberParticipateTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -91,6 +93,8 @@
 		9FA81F2722453C18006E47B7 /* ShareCountUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ShareCountUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9FA81F2B22453C18006E47B7 /* ShareCountUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareCountUITests.swift; sourceTree = "<group>"; };
 		9FA81F2D22453C18006E47B7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9FB4B0612254E0C400D5D345 /* MemberViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberViewModel.swift; sourceTree = "<group>"; };
+		9FB4B0632255214500D5D345 /* AddMemberParticipateTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMemberParticipateTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,6 +127,7 @@
 			children = (
 				112E762A2252847B003C5CC2 /* MemberSetViewModel.swift */,
 				112E763222542242003C5CC2 /* ParticipateSetViewModel.swift */,
+				9FB4B0612254E0C400D5D345 /* MemberViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -227,6 +232,7 @@
 				11C9955422468C580064AA4B /* TripTableViewCell.swift */,
 				11C9955E2247910D0064AA4B /* MemberTableViewCell.swift */,
 				112E762C22529461003C5CC2 /* MemberPaticipateTableViewCell.swift */,
+				9FB4B0632255214500D5D345 /* AddMemberParticipateTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -372,6 +378,7 @@
 				11C9955522468C580064AA4B /* TripTableViewCell.swift in Sources */,
 				170CE8C0224E52F40016B254 /* ExpenseFetchResultController.swift in Sources */,
 				11C995662247E3F40064AA4B /* TextFieldDelegate.swift in Sources */,
+				9FB4B0642255214500D5D345 /* AddMemberParticipateTableViewCell.swift in Sources */,
 				9FA81F0B22453C03006E47B7 /* TripSetViewController.swift in Sources */,
 				11C9955F2247910D0064AA4B /* MemberTableViewCell.swift in Sources */,
 				112E762822528042003C5CC2 /* MemberParticipateTableViewController.swift in Sources */,
@@ -380,6 +387,7 @@
 				9FA81F0922453C02006E47B7 /* AppDelegate.swift in Sources */,
 				112E762D22529461003C5CC2 /* MemberPaticipateTableViewCell.swift in Sources */,
 				11C995692247E8C20064AA4B /* MembersFetchResultController.swift in Sources */,
+				9FB4B0622254E0C400D5D345 /* MemberViewModel.swift in Sources */,
 				112E762F2253DE8A003C5CC2 /* ShowExpenseViewController.swift in Sources */,
 				112E76262251FE4D003C5CC2 /* AddExpenseViewController.swift in Sources */,
 				9F18B824224A322D000C1BBA /* CurrentTrip.swift in Sources */,

@@ -12,7 +12,7 @@ import CoreData
 class ExpenseFetchResultController: NSObject, NSFetchedResultsControllerDelegate  {
     
     let expensesTableView : UITableView
-    var expenses : [Expense] = []
+
     
     init(tableView : UITableView){
         self.expensesTableView = tableView
@@ -32,11 +32,20 @@ class ExpenseFetchResultController: NSObject, NSFetchedResultsControllerDelegate
     lazy var expensesFetched : NSFetchedResultsController<Expense> = {
         // prepare a request
         let request : NSFetchRequest<Expense> = Expense.fetchRequest(); request.sortDescriptors = [NSSortDescriptor(key:#keyPath(Expense.nameExpense),ascending:true),NSSortDescriptor(key:#keyPath(Expense.nameExpense) ,ascending:true)]
+        if let currentTrip = CurrentTrip.sharedInstance{
+            request.predicate = NSPredicate(format: "ANY participates.memberParticipate.trip == %@", currentTrip)
+        }
         let fetchResultController = NSFetchedResultsController(fetchRequest: request, managedObjectContext: CoreDataManager.context, sectionNameKeyPath: nil, cacheName: nil) //force unwrapp need to change
         fetchResultController.delegate = self
         return fetchResultController
         
     }()
+
+//    func expenseParticipationFetched(expense: Expense) -> NSFetchedResultsController<Participate> {
+//        let request : NSFetchRequest<Participate> = Participate.fetchRequest();
+//        request.predicate = NSPredicate(format: "expenseParticipe == %@", expense)
+//        return
+//    }
     
     // MARK: - NSFetchResultController delegate protocol
     

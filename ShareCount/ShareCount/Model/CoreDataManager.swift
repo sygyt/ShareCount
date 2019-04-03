@@ -33,6 +33,7 @@ class CoreDataManager{
         return entity
         
     }
+    
 
     @discardableResult
     /// save all data

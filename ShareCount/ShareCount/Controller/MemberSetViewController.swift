@@ -76,12 +76,21 @@ class MemberSetViewController: UIViewController, UITableViewDelegate, UITableVie
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = self.membersTableView.dequeueReusableCell(withIdentifier: "membersCell", for: indexPath) as! MemberTableViewCell
         let member = self.fetchResultController.membersFetched.object(at: indexPath)
+        var memberViewModel : MemberViewModel!
+        memberViewModel = MemberViewModel(data: member)
         if let firstname = member.firstName, let lastname = member.lastName{
             cell.nameMemberLabel.text = firstname + " " + lastname
         }
-//        if let fn :String = (self.members[indexPath.row].firstName), let ln :String = (self.members[indexPath.row].lastName) {
-//            cell.nameMemberLabel.text = fn + " " + ln
-//        }
+        let balance = memberViewModel.getBalance()
+        cell.balanceMemberLabel.text = String(balance) + "$"
+        if balance < 0 {
+            cell.balanceMemberLabel.textColor = UIColor.red
+        }
+        else {
+            if balance > 0 {
+                cell.balanceMemberLabel.textColor = UIColor.green
+            }
+        }
         return cell
     }
     

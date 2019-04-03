@@ -3,7 +3,7 @@
     <entity name="Expense" representedClassName="Expense" syncable="YES" codeGenerationType="class">
         <attribute name="dateExpense" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="nameExpense" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="participates" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Participate" inverseName="expenseParticipe" inverseEntity="Participate" syncable="YES"/>
+        <relationship name="participates" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Participate" inverseName="expenseParticipe" inverseEntity="Participate" syncable="YES"/>
     </entity>
     <entity name="Members" representedClassName="Members" syncable="YES" codeGenerationType="class">
         <attribute name="arrivalDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
@@ -14,8 +14,8 @@
         <relationship name="trip" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Trips" inverseName="members" inverseEntity="Trips" syncable="YES"/>
     </entity>
     <entity name="Participate" representedClassName="Participate" syncable="YES" codeGenerationType="class">
-        <attribute name="amountParticipate" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="amountReceive" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="amountParticipate" optional="YES" attributeType="Double" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="amountReceive" optional="YES" attributeType="Double" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <relationship name="expenseParticipe" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Expense" inverseName="participates" inverseEntity="Expense" syncable="YES"/>
         <relationship name="memberParticipate" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Members" inverseName="participateMember" inverseEntity="Members" syncable="YES"/>
     </entity>
@@ -27,9 +27,9 @@
         <relationship name="members" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Members" inverseName="trip" inverseEntity="Members" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Expense" positionX="-498.94921875" positionY="-142.203125" width="128" height="88"/>
+        <element name="Expense" positionX="-498.94921875" positionY="-142.203125" width="128" height="90"/>
         <element name="Members" positionX="-492.22265625" positionY="-321.76171875" width="118.3984375" height="133"/>
         <element name="Participate" positionX="-785.453125" positionY="-220.69921875" width="128" height="103"/>
-        <element name="Trips" positionX="-216.40234375" positionY="-300.3828125" width="128" height="118"/>
+        <element name="Trips" positionX="-181.50390625" positionY="-226.28125" width="128" height="118"/>
     </elements>
 </model>

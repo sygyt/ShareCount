@@ -10,6 +10,7 @@ import UIKit
 
 class MemberTableViewCell: UITableViewCell {
     
+    @IBOutlet weak var balanceMemberLabel: UILabel!
     
     @IBOutlet weak var nameMemberLabel: UILabel!
     

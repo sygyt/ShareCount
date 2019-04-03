@@ -15,6 +15,7 @@ class ShowExpenseViewController: UIViewController, UITableViewDataSource, UITabl
     @IBOutlet weak var nameExpense: UILabel!
     @IBOutlet weak var dateExpense: UILabel!
     @IBOutlet weak var participerTableView: UITableView!
+    @IBOutlet weak var costLabel: UILabel!
     
     var participateViewModel : ParticipateSetViewModel!
     
@@ -23,7 +24,6 @@ class ShowExpenseViewController: UIViewController, UITableViewDataSource, UITabl
     override func viewDidLoad() {
         super.viewDidLoad()
         if let expense = self.expense{
-            print(expense.nameExpense)
             self.nameExpense.text = expense.nameExpense
             let dateFormatter  = DateFormatter()
             dateFormatter.locale = Locale(identifier: "en_US")
@@ -35,6 +35,8 @@ class ShowExpenseViewController: UIViewController, UITableViewDataSource, UITabl
             self.participateViewModel = ParticipateSetViewModel(data: expense.participates?.allObjects as! [Participate])
             self.participerTableView.delegate = self
             self.participerTableView.dataSource = self
+            
+            self.costLabel.text = String(participateViewModel.getCost()) + " $"
         }
 
         // Do any additional setup after loading the view.
@@ -73,11 +75,11 @@ class ShowExpenseViewController: UIViewController, UITableViewDataSource, UITabl
             print( participate.memberParticipate!)
             cell.configure(member: participate.memberParticipate!)
             print(participate.amountParticipate)
-            cell.participationTextField.text = String(participate.amountParticipate)
-            cell.participationTextField.textColor = UIColor.red
+            cell.participationLabel.text = String(participate.amountParticipate)
+            cell.participationLabel.textColor = UIColor.red
             print(participate.amountReceive)
-            cell.receiveTextField.text = String(participate.amountReceive)
-            cell.receiveTextField.textColor = UIColor.green
+            cell.receiveLabel.text = String(participate.amountReceive)
+            cell.receiveLabel.textColor = UIColor.green
         }
         return cell
     }

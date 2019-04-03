@@ -1,33 +1,33 @@
 //
-//  MemberPaticipateTableViewCell.swift
+//  AddMemberParticipateTableViewCell.swift
 //  ShareCount
 //
-//  Created by Simon Gayet on 01/04/2019.
+//  Created by Simon GAYET on 03/04/2019.
 //  Copyright © 2019 Simon GAYET Quentin FRANCE. All rights reserved.
 //
 
 import UIKit
 
-class MemberPaticipateTableViewCell: UITableViewCell, UITextFieldDelegate {
-
-    @IBOutlet weak var participationLabel: UILabel!
-    @IBOutlet weak var receiveLabel: UILabel!
+class AddMemberParticipateTableViewCell: UITableViewCell, UITextFieldDelegate {
+    
     @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var participationTF: UITextField!
+    @IBOutlet weak var receiveTF: UITextField!
     
     override func awakeFromNib() {
         super.awakeFromNib()
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
+        
         // Configure the view for the selected state
     }
     
     func configure(member: Members){
         self.nameLabel.text = member.firstName
-        self.participationLabel.text = "0"
-        self.receiveLabel.text = "0"
+        self.participationTF.text = "0"
+        self.receiveTF.text = "0"
     }
     
     // TextField Delegate
@@ -43,11 +43,11 @@ class MemberPaticipateTableViewCell: UITableViewCell, UITextFieldDelegate {
     }
     
     func getParticipation() -> Double {
-        return Double(self.participationLabel.text ?? "0") ?? 0
+        return Double(self.participationTF.text ?? "0") ?? 0
     }
     
     func getReveive() -> Double {
-        return Double(self.receiveLabel.text ?? "0") ?? 0
+        return Double(self.receiveTF.text ?? "0") ?? 0
     }
     
     

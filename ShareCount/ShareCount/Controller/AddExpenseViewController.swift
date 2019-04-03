@@ -50,14 +50,14 @@ class AddExpenseViewController: UIViewController, UITextFieldDelegate{
     
     @IBAction func participationTextFieldBeingEdit(_ sender: UITextField) {
         self.total += -(Int(sender.text ?? "0") ?? 0)
-        print(total)
+        
     }
     
     
     @IBAction func participationTextFieldEndEdit(_ sender: UITextField, forEvent event: UIEvent) {
         self.total += (Int(sender.text ?? "0") ?? 0)
         self.totalLabel.text = String(total)
-        print(total)
+        
     }
     
     
@@ -103,18 +103,22 @@ class AddExpenseViewController: UIViewController, UITextFieldDelegate{
             
             let name = nameExpenseTextField.text ?? ""
             let date = expenseDatePickerLabel.text ?? ""
-            guard (name != "") && (date != "") else { return }
-            let expense = Expense(context: CoreDataManager.context)
-            expense.nameExpense = name
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "dd/MM/yyyy"
-            expense.dateExpense = dateFormatter.date(from: date)
-            CoreDataManager.save()
-            memberTableViewController.addParticipate(expense: expense)
+            if ((name != "") && (date != ""))  {
+                let expense = Expense(context: CoreDataManager.context)
+                expense.nameExpense = name
+                let dateFormatter = DateFormatter()
+                dateFormatter.dateFormat = "dd/MM/yyyy"
+                expense.dateExpense = dateFormatter.date(from: date)
+                CoreDataManager.save()
+                memberTableViewController.addParticipate(expense: expense)
+            }
         }
     }
     
-    
-   
+    override func viewWillAppear(_ animated: Bool) {
+        memberParticipateTableView.reloadData()
+        self.viewDidLoad()
+    }
+
     
 }

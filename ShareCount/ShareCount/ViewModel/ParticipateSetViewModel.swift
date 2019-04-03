@@ -82,4 +82,12 @@ class ParticipateSetViewModel{
         
     }
     
+    public func getCost() -> Int {
+        var totalCost = 0
+        for i in participateSet {
+            totalCost += Int(i.amountParticipate)
+        }
+        return totalCost
+    }
+    
 }

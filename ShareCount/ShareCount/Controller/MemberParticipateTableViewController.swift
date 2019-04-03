@@ -70,7 +70,7 @@ class MemberParticipateTableViewController: NSObject, UITableViewDataSource, UIT
 
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "memberParticipateCell", for: indexPath) as! MemberPaticipateTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "memberParticipateCell", for: indexPath) as! AddMemberParticipateTableViewCell
         if let member = self.memberViewModel.get(personAt: indexPath.row){
             cell.configure(member: member)
         }
@@ -84,8 +84,8 @@ class MemberParticipateTableViewController: NSObject, UITableViewDataSource, UIT
         let size = cells.count
         let sharedValue = total/size
         for i in 0..<size {
-            let cell = cells[i] as! MemberPaticipateTableViewCell
-            cell.receiveTextField.text = String(sharedValue)
+            let cell = cells[i] as! AddMemberParticipateTableViewCell
+            cell.receiveTF.text = String(sharedValue)
         }
 
     }
@@ -93,13 +93,13 @@ class MemberParticipateTableViewController: NSObject, UITableViewDataSource, UIT
     // add function
     
     func isCorectTotal() -> Bool {
-        var totalParticipation : Int16 = 0
-        var totalReceive : Int16 = 0
+        var totalParticipation : Double = 0
+        var totalReceive : Double = 0
         
         let cells = tableView.visibleCells
         let size = cells.count
         for i in 0..<size {
-            let cell = cells[i] as! MemberPaticipateTableViewCell
+            let cell = cells[i] as! AddMemberParticipateTableViewCell
             totalParticipation += cell.getParticipation()
             totalReceive += cell.getReveive()
         }
@@ -117,7 +117,7 @@ class MemberParticipateTableViewController: NSObject, UITableViewDataSource, UIT
         let cells = tableView.visibleCells
         let size = cells.count
         for i in 0..<size {
-            let cell = cells[i] as! MemberPaticipateTableViewCell
+            let cell = cells[i] as! AddMemberParticipateTableViewCell
             if (cell.getParticipation() != 0 || cell.getReveive() != 0) {
                 let participate = Participate(context: CoreDataManager.context)
                 participate.amountParticipate = cell.getParticipation()
@@ -146,5 +146,4 @@ class MemberParticipateTableViewController: NSObject, UITableViewDataSource, UIT
         
     }
    
-
 }
