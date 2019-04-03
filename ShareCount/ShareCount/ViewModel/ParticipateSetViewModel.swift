@@ -82,6 +82,9 @@ class ParticipateSetViewModel{
         
     }
     
+    /// Get Participate Cost 
+    ///
+    /// - Returns: <#return value description#>
     public func getCost() -> Int {
         var totalCost = 0
         for i in participateSet {

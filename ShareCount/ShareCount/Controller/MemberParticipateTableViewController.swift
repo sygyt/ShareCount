@@ -13,13 +13,20 @@ class MemberParticipateTableViewController: NSObject, UITableViewDataSource, UIT
     
     
     
+    /// The table view
     var tableView : UITableView
+    
+    
+    /// The member view model
     var memberViewModel : MemberSetViewModel!
+    
+    /// The fetch result controller
     let fetchResultController : MembersFetchResultController
     
   
-    
-    
+    /// Method called at initialization of the class
+    ///
+    /// - Parameter tableView: <#tableView description#>
     init(tableView: UITableView) {
         self.tableView = tableView
         self.fetchResultController = MembersFetchResultController(tableView : tableView)
@@ -33,7 +40,7 @@ class MemberParticipateTableViewController: NSObject, UITableViewDataSource, UIT
     }
     
 
-    //MARK: - TableView delegate
+    //MARK: - TableView delegate -
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let delete = deleteAction(at: indexPath)
@@ -55,7 +62,7 @@ class MemberParticipateTableViewController: NSObject, UITableViewDataSource, UIT
         return action
     }
     
-    // MARK: - Table view data source
+    // MARK: - Table view data source -
 
     func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
@@ -76,6 +83,8 @@ class MemberParticipateTableViewController: NSObject, UITableViewDataSource, UIT
         }
         return cell
     }
+    
+    // MARK: - Operators -
     
     // divide func nb: not correct form
     // shame on this func

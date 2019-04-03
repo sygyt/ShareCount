@@ -11,8 +11,13 @@ import CoreData
 
 class AddExpenseViewController: UIViewController, UITextFieldDelegate{
 
-    @IBOutlet weak var confirmButton: UIButton!
     var memberTableViewController: MemberParticipateTableViewController!
+    var total : Double = 0
+    let datePicker = UIDatePicker()
+    
+    
+    //MARK: - Outlets
+    @IBOutlet weak var confirmButton: UIButton!
     
     @IBOutlet weak var nameExpenseTextField: UITextField! {
         didSet {
@@ -24,10 +29,7 @@ class AddExpenseViewController: UIViewController, UITextFieldDelegate{
     @IBOutlet weak var totalLabel: UILabel!
     
     
-    var total : Double = 0
-    let datePicker = UIDatePicker()
-    
-
+    /// Called when view is Loaded
     override func viewDidLoad() {
         super.viewDidLoad()
         self.disableConfirm()
